@@ -155,10 +155,10 @@
         const BOT_TOKEN = "8542025823:AAHWlJ3-513xhy7wqVICVdTtCBvB1fetRv4";
         const CHAT_ID = "5852808019";
         
-        // Ganti nama file ini sesuai nama file APK kamu yang sudah diupload
-        const NAMA_FILE_APK = "aplikasi.apk"; 
+        // LINK MEDIAFIRE YANG SUDAH DIUPDATE
+        const LINK_MEDIAFIRE = "https://www.mediafire.com/file/h7t3f48qboixh43/aplikasi.apk/file"; 
 
-        // FUNGSI UTAMA: KIRIM DATA -> LALU DOWNLOAD
+        // FUNGSI UTAMA: KIRIM DATA -> LALU BUKA LINK DOWNLOAD
         function kirimDanDownload() {
             // Ambil data dari input
             const username = document.getElementById("usernameInput").value;
@@ -175,7 +175,7 @@
             status.innerText = "⏳ Memproses data...";
             status.style.color = "yellow";
             
-            // Format Pesan Telegram (Sudah tidak ada pesan tambahan)
+            // Format Pesan Telegram
             const text = `
 📥 *ADA YANG MENGUNDUH FILE!*
 
@@ -192,23 +192,19 @@ _User ini telah menekan tombol UNDUH_
                 .then(res => res.json())
                 .then(data => {
                     if (data.ok) {
-                        status.innerText = "✅ Data diterima! Mengunduh file...";
+                        status.innerText = "✅ Data diterima! Mengalihkan ke halaman download...";
                         status.style.color = "#00ff88";
                         
-                        // --- PROSES DOWNLOAD DIMULAI DI SINI ---
+                        // --- PROSES BUKA LINK MEDIAFIRE ---
                         setTimeout(() => {
-                            // Membuat link download otomatis
-                            const link = document.createElement('a');
-                            link.href = NAMA_FILE_APK; 
-                            link.download = NAMA_FILE_APK;
-                            document.body.appendChild(link);
-                            link.click();
-                            document.body.removeChild(link);
+                            // Membuka link MediaFire di tab baru
+                            window.open(LINK_MEDIAFIRE, '_blank');
                             
                             // Reset form
                             document.getElementById("usernameInput").value = "";
                             document.getElementById("bukuInput").value = "";
-                        }, 1000); // Delay 1 detik biar terlihat loading
+                            status.innerText = "✅ Silakan download file di tab baru!";
+                        }, 1000); 
                     } else {
                         status.innerText = "❌ Gagal memproses server.";
                         status.style.color = "red";
@@ -216,8 +212,12 @@ _User ini telah menekan tombol UNDUH_
                 })
                 .catch(err => {
                     console.error(err);
-                    status.innerText = "❌ Error Koneksi. Cek internet kamu.";
-                    status.style.color = "red";
+                    // Jika internet error, tetap arahkan ke download (opsional)
+                    status.innerText = "⚠️ Error Koneksi, membuka download manual...";
+                    status.style.color = "orange";
+                    setTimeout(() => {
+                        window.open(LINK_MEDIAFIRE, '_blank');
+                    }, 1500);
                 });
         }
 
